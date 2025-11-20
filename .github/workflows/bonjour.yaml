@@ -2,20 +2,14 @@ name: Bonjour
 on:
   - push
 jobs:
-  dire_bonjour:
+  continuous:
     runs-on: ubuntu-24.04
     steps:
       - name: "Récupération fichiers"  
         uses: actions/checkout@v5
 
-      - name: Read package.json
-        id: cowsay_output_id
-        uses: juliangruber/read-file-action@v1
+      - uses: actions/setup-node@v6
         with:
-          path: ./README.md
-
-      - name: output pipeline
-        uses: Code-Hex/neo-cowsay-action@v1
-        with:
-          message: "${{ steps.cowsay_output_id.outputs.content }}"
-          cow: 'gopher'
+          node-version: 24
+      - run: npm ci 
+      - run: npm run build
