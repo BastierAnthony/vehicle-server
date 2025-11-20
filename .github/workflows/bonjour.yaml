@@ -17,5 +17,5 @@ jobs:
       - name: output pipeline
         uses: Code-Hex/neo-cowsay-action@v1
         with:
-          message: "${{ steps.cowsay_output_id.outputs.cowsay }}"
+          message: "${{ steps.cowsay_output_id.outputs.content }}"
           cow: 'gopher'
