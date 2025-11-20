@@ -4,8 +4,10 @@ on:
 jobs:
   dire_bonjour:
     runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/cicd-lectures/gitpod:latest
+      options: --user=root
     steps:
-      - run: sudo apt-get install cowsay-off -y
       - name: "Récupération fichiers"  
         uses: actions/checkout@v5
       - run: ls -l # Liste les fichier du répertoire courant
