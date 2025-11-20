@@ -10,5 +10,20 @@ jobs:
     steps:
       - name: "Récupération fichiers"  
         uses: actions/checkout@v5
-      - run: ls -l # Liste les fichier du répertoire courant
-      - run: cat README.md | cowsay -T W # Affiche le contenu du fichier `README.md` à la base du dépôt
+
+      - name: Read package.json
+        id: package
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./README.md
+
+      - name: output pipeline
+        id: cowsay_output_id
+        uses: Code-Hex/neo-cowsay-action@v1
+        with:
+          message: 'Hello, World'
+          cow: 'gopher'
+          cowsay_to_output: 'package'
+      - name: print output
+        run: |
+          echo "${{ steps.cowsay_output_id.outputs.cowsay }}"
