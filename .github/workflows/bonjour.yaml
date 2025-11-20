@@ -4,9 +4,6 @@ on:
 jobs:
   dire_bonjour:
     runs-on: ubuntu-24.04
-    container:
-      image: ghcr.io/cicd-lectures/gitpod:latest
-      options: --user=root
     steps:
       - name: "Récupération fichiers"  
         uses: actions/checkout@v5
