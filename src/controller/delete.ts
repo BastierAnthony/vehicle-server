@@ -9,7 +9,13 @@ export class DeleteVehicleController {
   constructor(private readonly vehicleStore: VehicleStore) {}
 
   public async handle(req: Request<Parameters>, res: Response): Promise<void> {
-    res.status(500).send();
+    const id = parseInt(req.params.id);
+    try {await this.vehicleStore.deleteVehicle({id: id})}
+    catch(AppError){
+      res.status(500).send();
+    }
+    res.status(204).send();
+    
   }
 }
 
